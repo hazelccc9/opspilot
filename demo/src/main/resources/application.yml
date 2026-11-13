@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: opspilot
+  profiles:
+    default: dev
+  ai:
+    openai:
+      # Use any OpenAI-compatible endpoint: OpenAI, DeepSeek, Qwen, Ollama.
+      # Example: OPENAI_BASE_URL=https://api.deepseek.com
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com}
+      api-key: ${OPENAI_API_KEY:demo-key}
+      chat:
+        options:
+          model: ${OPENAI_CHAT_MODEL:gpt-4o-mini}
+          temperature: 0.2
+      embedding:
+        options:
+          model: ${OPENAI_EMBEDDING_MODEL:text-embedding-3-small}
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true

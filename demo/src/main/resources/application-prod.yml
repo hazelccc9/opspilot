@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/opspilot}
+    username: ${DB_USER:opspilot}
+    password: ${DB_PASSWORD:opspilot}
+    driver-class-name: org.postgresql.Driver
+  h2:
+    console:
+      enabled: false
+
+logging:
+  level:
+    com.opspilot: INFO

@@ -1,0 +1,39 @@
+# Java / Maven
+demo/target/
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+demo/run.log
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Generated plan output
+plan/TODAY.md
+
+# Local
+*.local
+
+# H2 local database
+demo/data/
+data/
+*.mv.db
+*.trace.db
+*.lock.db
