@@ -1,0 +1,337 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opspilot.dev/schemas/incident-case.schema.json",
+  "title": "OpsPilot IncidentCase",
+  "description": "One synthetic incident case used by the OpsPilot evaluation harness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["caseId", "category", "service", "alert", "signals", "groundTruth"],
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "pattern": "^CASE-[0-9]{3}$"
+    },
+    "category": {
+      "$ref": "#/$defs/rootCauseCategory"
+    },
+    "service": {
+      "type": "string",
+      "minLength": 1
+    },
+    "alert": {
+      "$ref": "#/$defs/alert"
+    },
+    "signals": {
+      "$ref": "#/$defs/signals"
+    },
+    "groundTruth": {
+      "$ref": "#/$defs/groundTruth"
+    }
+  },
+  "$defs": {
+    "rootCauseCategory": {
+      "type": "string",
+      "enum": [
+        "BAD_DEPLOY",
+        "DEPENDENCY_TIMEOUT",
+        "CONNECTION_POOL_EXHAUSTION",
+        "TRAFFIC_SPIKE",
+        "CONFIG_ERROR",
+        "UNKNOWN"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3"]
+    },
+    "evidenceType": {
+      "type": "string",
+      "enum": ["METRIC", "LOG", "DEPLOYMENT", "DEPENDENCY", "RUNBOOK", "SIMILAR_INCIDENT"]
+    },
+    "actionType": {
+      "type": "string",
+      "enum": [
+        "ROLLBACK",
+        "RESTART",
+        "SCALE_UP",
+        "INCREASE_POOL_SIZE",
+        "ENABLE_CIRCUIT_BREAKER",
+        "FIX_CONFIG",
+        "DISABLE_FEATURE_FLAG",
+        "ESCALATE",
+        "NO_OP"
+      ]
+    },
+    "actionRisk": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH"]
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "alert": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alertId",
+        "service",
+        "symptom",
+        "severity",
+        "firedAt",
+        "source",
+        "description",
+        "labels"
+      ],
+      "properties": {
+        "alertId": {
+          "type": "string",
+          "pattern": "^ALERT-[0-9]{3}$"
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symptom": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "firedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "labels": {
+          "$ref": "#/$defs/labels"
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deploymentId",
+        "service",
+        "version",
+        "deployedAt",
+        "deployedBy",
+        "commitSha",
+        "status",
+        "changes"
+      ],
+      "properties": {
+        "deploymentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deployedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deployedBy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commitSha": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["SUCCESS", "FAILED", "ROLLED_BACK"]
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "service", "timestamp", "value", "unit", "labels"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "labels": {
+          "$ref": "#/$defs/labels"
+        }
+      }
+    },
+    "log": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["logId", "service", "timestamp", "level", "message", "traceId", "attributes"],
+      "properties": {
+        "logId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "level": {
+          "type": "string",
+          "enum": ["DEBUG", "INFO", "WARN", "ERROR"]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "traceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributes": {
+          "$ref": "#/$defs/labels"
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service", "dependsOn", "status", "latencyP95Ms", "errorRate"],
+      "properties": {
+        "service": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependsOn": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["UP", "DEGRADED", "DOWN"]
+        },
+        "latencyP95Ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "errorRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deployments", "metrics", "logs", "dependencies"],
+      "properties": {
+        "deployments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/deployment"
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/metric"
+          }
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/log"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dependency"
+          }
+        }
+      }
+    },
+    "groundTruth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rootCauseCategory",
+        "rootCauseSummary",
+        "expectedEvidenceTypes",
+        "expectedActionType",
+        "expectedActionRisk",
+        "shouldEscalate",
+        "notes"
+      ],
+      "properties": {
+        "rootCauseCategory": {
+          "$ref": "#/$defs/rootCauseCategory"
+        },
+        "rootCauseSummary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expectedEvidenceTypes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evidenceType"
+          }
+        },
+        "expectedActionType": {
+          "$ref": "#/$defs/actionType"
+        },
+        "expectedActionRisk": {
+          "$ref": "#/$defs/actionRisk"
+        },
+        "shouldEscalate": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

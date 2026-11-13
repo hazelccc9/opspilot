@@ -1,0 +1,6 @@
+# Keep text files LF in the repository and in checkouts so dataset hashes are stable.
+* text=auto eol=lf
+
+# Windows launchers must keep CRLF.
+*.cmd text eol=crlf
+*.bat text eol=crlf

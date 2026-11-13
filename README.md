@@ -2,7 +2,7 @@
 
 > 告警/工单处理 Agent：接入告警，调用日志、指标、发布记录、CMDB、Runbook 等工具，给出根因假设与处理建议；该转人工就转人工，全过程可审计、可评测、可回放。
 
-当前状态：**Day 1 / 35**，项目骨架搭建中。
+当前状态：**Day 2 / 35**。已完成项目骨架、领域模型、50 条合成故障集和评测指标初稿。
 
 ## 这个项目要证明什么
 
@@ -29,11 +29,11 @@
 
 ```text
 demo-project/
-  demo/                 # Spring Boot 后端（当前是空的 demo 骨架）
+  demo/                 # Spring Boot 后端
+  demo-data/            # 50 条合成故障集 + JSON Schema
+  docs/                 # 领域模型、评测方案、ADR、每日日志
   plan/                 # 35 天每日计划 + 今日任务
   tools/                # 每日提醒脚本
-  docs/                 # 架构、ADR、评测报告（待建）
-  demo-data/            # 合成故障集（待建）
   deploy/               # Docker Compose（待建）
 ```
 
@@ -58,6 +58,18 @@ OPENAI_API_KEY=your-key
 OPENAI_CHAT_MODEL=deepseek-chat
 ```
 
+## 当前进度
+
+- Day 1：Spring Boot 4.1 + Spring AI 2.0 骨架，dev/prod 双 profile，H2 可启动。
+- Day 2：`Alert / Incident / Evidence / Hypothesis / Action / Ticket` 等领域模型；5 类故障 × 10 条的合成数据集；JSON Schema 校验；评测指标初稿。
+
+```bash
+cd demo
+./mvnw test
+```
+
+测试会校验数据集数量、分类、ground truth 完整性和 schema；生成器见 `demo-data/README.md`。
+
 ## 每日计划
 
 - 计划说明：`plan/README.md`
@@ -74,4 +86,4 @@ OPENAI_CHAT_MODEL=deepseek-chat
 
 ## License
 
-Apache-2.0（待添加 LICENSE 文件）。
+Apache-2.0，见 [LICENSE](LICENSE)。
