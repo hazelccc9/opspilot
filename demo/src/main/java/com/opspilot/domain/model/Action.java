@@ -17,30 +17,29 @@ import java.time.Instant;
  *   <li>状态不能从 {@code PROPOSED} 直接跳到 {@code EXECUTED}；</li>
  *   <li>本项目只允许 {@code dryRun = true} 或沙箱执行，不连接真实生产环境。</li>
  * </ul>
- *
- * @param actionId         动作唯一 ID
- * @param incidentId       所属故障 ID
- * @param type             动作类型，见 {@link ActionType}
- * @param description      具体操作说明，例如“回滚 order-service 到 v1.7.3”
- * @param risk             风险等级，见 {@link ActionRisk}
- * @param requiresApproval 是否需要人工审批；写操作必须为 {@code true}
- * @param status           当前状态，见 {@link ActionStatus}
- * @param dryRun           是否只做演练；{@code true} 表示不产生真实副作用
- * @param idempotencyKey   幂等键，用于防止重复执行同一动作
- * @param createdAt        动作创建时间（UTC）
- * @param executedAt       实际执行时间（UTC）；未执行、被拒绝或仅演练时为 {@code null}
  */
 public record Action(
+        // 动作唯一 ID
         String actionId,
+        // 所属故障 ID
         String incidentId,
+        // 动作类型，见 ActionType
         ActionType type,
+        // 具体操作说明，例如“回滚 order-service 到 v1.7.3”
         String description,
+        // 风险等级，见 ActionRisk
         ActionRisk risk,
+        // 是否需要人工审批；写操作必须为 true
         boolean requiresApproval,
+        // 当前状态，见 ActionStatus
         ActionStatus status,
+        // 是否只做演练；true 表示不产生真实副作用
         boolean dryRun,
+        // 幂等键，用于防止重复执行同一动作
         String idempotencyKey,
+        // 动作创建时间（UTC）
         Instant createdAt,
+        // 实际执行时间（UTC）；未执行、被拒绝或仅演练时为 null
         Instant executedAt
 ) {
 }

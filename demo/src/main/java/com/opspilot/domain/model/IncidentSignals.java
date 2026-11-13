@@ -10,16 +10,15 @@ import java.util.List;
  *
  * <p>四个列表都允许为空（例如没有发布记录），但不应为 {@code null}。
  * 数据只包含合成内容，不包含真实生产数据。
- *
- * @param deployments  相关发布/配置变更记录
- * @param metrics      相关指标采样点
- * @param logs         相关日志事件
- * @param dependencies 相关依赖健康度快照
  */
 public record IncidentSignals(
+        // 相关发布/配置变更记录
         List<Deployment> deployments,
+        // 相关指标采样点
         List<MetricSample> metrics,
+        // 相关日志事件
         List<LogEvent> logs,
+        // 相关依赖健康度快照
         List<DependencyStatus> dependencies
 ) {
 }
