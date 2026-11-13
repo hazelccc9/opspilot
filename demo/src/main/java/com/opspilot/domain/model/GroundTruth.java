@@ -18,19 +18,19 @@ import java.util.List;
  * 可接受动作集合。
  */
 public record GroundTruth(
-        // 标准根因分类
+        /* 标准根因分类 */
         RootCauseCategory rootCauseCategory,
-        // 根因摘要，说明时间线和关键证据
+        /* 根因摘要，说明时间线和关键证据 */
         String rootCauseSummary,
-        // Agent 至少应收集到的证据类型；不能为空
+        /* Agent 至少应收集到的证据类型；不能为空 */
         List<EvidenceType> expectedEvidenceTypes,
-        // 期望的处置动作类型
+        /* 期望的处置动作类型 */
         ActionType expectedActionType,
-        // 期望的最低风险等级；Agent 可以更保守，但不能更低
+        /* 期望的最低风险等级；Agent 可以更保守，但不能更低 */
         ActionRisk expectedActionRisk,
-        // 是否应该转交人工处理
+        /* 是否应该转交人工处理 */
         boolean shouldEscalate,
-        // 标注理由、边界条件或评分说明
+        /* 标注理由、边界条件或评分说明 */
         String notes
 ) {
 }

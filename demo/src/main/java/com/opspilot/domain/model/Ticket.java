@@ -11,21 +11,21 @@ import java.time.Instant;
  * 工单不是“聊天记录”，而是可交接、可复盘、可统计的结构化记录。
  */
 public record Ticket(
-        // 工单唯一 ID
+        /* 工单唯一 ID */
         String ticketId,
-        // 关联的故障 ID
+        /* 关联的故障 ID */
         String incidentId,
-        // 工单标题
+        /* 工单标题 */
         String title,
-        // 处理摘要，包含根因、影响、已采取的动作和后续事项
+        /* 处理摘要，包含根因、影响、已采取的动作和后续事项 */
         String summary,
-        // 工单状态，见 TicketStatus
+        /* 工单状态，见 TicketStatus */
         TicketStatus status,
-        // 当前处理人；未分配时为 null
+        /* 当前处理人；未分配时为 null */
         String assignee,
-        // 创建时间（UTC）
+        /* 创建时间（UTC） */
         Instant createdAt,
-        // 最后更新时间（UTC）
+        /* 最后更新时间（UTC） */
         Instant updatedAt
 ) {
 }

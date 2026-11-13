@@ -12,13 +12,13 @@ import java.util.List;
  * 数据只包含合成内容，不包含真实生产数据。
  */
 public record IncidentSignals(
-        // 相关发布/配置变更记录
+        /* 相关发布/配置变更记录 */
         List<Deployment> deployments,
-        // 相关指标采样点
+        /* 相关指标采样点 */
         List<MetricSample> metrics,
-        // 相关日志事件
+        /* 相关日志事件 */
         List<LogEvent> logs,
-        // 相关依赖健康度快照
+        /* 相关依赖健康度快照 */
         List<DependencyStatus> dependencies
 ) {
 }

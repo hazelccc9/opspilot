@@ -11,17 +11,17 @@ import java.util.Map;
  * 而不是直接读取这个对象。
  */
 public record MetricSample(
-        // 指标名，例如 http.server.requests.error_rate、jvm.cpu.usage、db.connection.pending
+        /* 指标名，例如 http.server.requests.error_rate、jvm.cpu.usage、db.connection.pending */
         String name,
-        // 指标所属服务
+        /* 指标所属服务 */
         String service,
-        // 采样时间（UTC），不是告警触发时间
+        /* 采样时间（UTC），不是告警触发时间 */
         Instant timestamp,
-        // 指标值
+        /* 指标值 */
         double value,
-        // 单位，例如 ratio、ms、count、qps
+        /* 单位，例如 ratio、ms、count、qps */
         String unit,
-        // 维度标签，例如 status=5xx、pool=primary；可能为空 Map，但不应为 null
+        /* 维度标签，例如 status=5xx、pool=primary；可能为空 Map，但不应为 null */
         Map<String, String> labels
 ) {
 }

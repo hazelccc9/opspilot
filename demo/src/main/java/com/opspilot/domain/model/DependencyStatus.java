@@ -10,15 +10,15 @@ import com.opspilot.domain.enums.DependencyHealth;
  * {@code status/latencyP95Ms/errorRate} 描述的是 {@code payment-service} 的健康状况。
  */
 public record DependencyStatus(
-        // 调用方服务名
+        /* 调用方服务名 */
         String service,
-        // 被依赖的服务名
+        /* 被依赖的服务名 */
         String dependsOn,
-        // 依赖健康状态，见 DependencyHealth
+        /* 依赖健康状态，见 DependencyHealth */
         DependencyHealth status,
-        // 下游调用的 P95 延迟，单位毫秒
+        /* 下游调用的 P95 延迟，单位毫秒 */
         double latencyP95Ms,
-        // 下游调用的错误率，取值 0.0 ~ 1.0
+        /* 下游调用的错误率，取值 0.0 ~ 1.0 */
         double errorRate
 ) {
 }
