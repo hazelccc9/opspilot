@@ -6,9 +6,9 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * 根因假设：Agent 对“为什么会发生这次故障”的结构化判断。
+ * 根因假设，是 Agent 对“为什么会发生这次故障”的结构化判断。
  *
- * <p>一次故障可以有多个假设。Agent 应该先提出假设，再用证据验证或排除；
+ * 一次故障可以有多个假设。Agent 应该先提出假设，再用证据验证或排除；
  * 而不是先下结论、再挑对自己有利的证据。{@code supportingEvidenceIds} 必须指向
  * 已经收集到的 {@link Evidence}，不能引用不存在的证据。
  */

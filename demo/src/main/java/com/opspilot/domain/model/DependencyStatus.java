@@ -5,7 +5,7 @@ import com.opspilot.domain.enums.DependencyHealth;
 /**
  * 调用方视角的下游依赖健康度快照。
  *
- * <p>例如 {@code order-service -> payment-service}：{@code service} 是调用方
+ * 例如 {@code order-service -> payment-service}：{@code service} 是调用方
  * {@code order-service}，{@code dependsOn} 是被依赖方 {@code payment-service}，
  * {@code status/latencyP95Ms/errorRate} 描述的是 {@code payment-service} 的健康状况。
  */

@@ -3,7 +3,7 @@ package com.opspilot.domain.model;
 /**
  * 证据或知识片段的可核对出处。
  *
- * <p>RAG 场景中，Agent 不能只说“Runbook 里写了要回滚”，还必须能给出
+ * RAG 场景中，Agent 不能只说“Runbook 里写了要回滚”，还必须能给出
  * 文档 ID、切片 ID、版本和原文片段。这样人类才能验证结论不是模型编造的。
  */
 public record Citation(

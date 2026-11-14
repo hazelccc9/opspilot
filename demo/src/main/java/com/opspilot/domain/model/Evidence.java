@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Agent 收集到的一条证据。
  *
- * <p>{@code Evidence} 不是原始日志或指标本身，而是“经过工具查询和归纳后，
+ * {@code Evidence} 不是原始日志或指标本身，而是“经过工具查询和归纳后，
  * 可以被引用到结论里的信息”。原始结果放在 {@code payload}，人类可读的结论放在
  * {@code summary}，二者都要保留，避免只留下模型转述而无法复核。
  */

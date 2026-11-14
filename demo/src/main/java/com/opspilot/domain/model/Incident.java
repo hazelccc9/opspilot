@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 一次故障事件，是 Agent 调查和处置的运行时聚合根。
+ * 故障事件，是 Agent 调查和处置的运行时聚合根。
  *
- * <p>如果说 {@link Alert} 是“监控系统喊了一声”，那么 {@code Incident} 就是
+ * 如果说 {@link Alert} 是“监控系统喊了一声”，那么 {@code Incident} 就是
  * “我们决定把这件事当成一次故障来处理”。它把告警、状态、受影响范围和审计元数据
  * 组织在一起，后续的 {@link Evidence}、{@link Hypothesis}、{@link Action} 都挂在它下面。
  */

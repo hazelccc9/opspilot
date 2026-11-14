@@ -1,9 +1,9 @@
 package com.opspilot.domain.enums;
 
 /**
- * 日志级别，与常见日志框架的语义保持一致。
+ * 日志级别
  *
- * <p>Agent 调查时通常优先看 {@code WARN} 和 {@code ERROR}，但 {@code INFO} 中的
+ * Agent 调查时通常优先看 {@code WARN} 和 {@code ERROR}，但 {@code INFO} 中的
  * 启动、配置刷新、连接池初始化等信息也可能成为关键证据。
  */
 public enum LogLevel {

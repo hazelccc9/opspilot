@@ -1,9 +1,9 @@
 package com.opspilot.domain.enums;
 
 /**
- * 证据类型：Agent 在调查中收集到的信息类别。
+ * 证据类型，表示 Agent 在调查中收集到的信息类别。
  *
- * <p>评测时会把 Agent 实际收集到的类型集合与 {@code GroundTruth.expectedEvidenceTypes}
+ * 评测时会把 Agent 实际收集到的类型集合与 {@code GroundTruth.expectedEvidenceTypes}
  * 比较，计算 Evidence Recall / Precision。
  */
 public enum EvidenceType {

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 一次代码发布或配置变更记录。
  *
- * <p>本项目中，配置变更也会生成一条 {@code Deployment}（版本形如
+ * 本项目中，配置变更也会生成一条 {@code Deployment}（版本形如
  * {@code config-2026.11.10-1}），以便 Agent 用同一套“变更时间线”能力来关联
  * {@code BAD_DEPLOY} 和 {@code CONFIG_ERROR}。二者的区别主要靠变更内容、日志和指标判断。
  */

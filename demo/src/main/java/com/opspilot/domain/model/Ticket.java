@@ -5,9 +5,9 @@ import com.opspilot.domain.enums.TicketStatus;
 import java.time.Instant;
 
 /**
- * 工单：故障处理过程的可审计载体。
+ * 工单，是故障处理过程的可审计载体。
  *
- * <p>Agent 的结论、证据引用、建议动作和人工审批结果最终都应能落到工单上。
+ * Agent 的结论、证据引用、建议动作和人工审批结果最终都应能落到工单上。
  * 工单不是“聊天记录”，而是可交接、可复盘、可统计的结构化记录。
  */
 public record Ticket(

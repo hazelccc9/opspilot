@@ -1,17 +1,12 @@
 package com.opspilot.domain.enums;
 
 /**
- * 故障事件（Incident）在 Agent 处理流程中的状态。
+ * 故障处理状态
  *
- * <p>典型流转：
+ * 典型流转：NEW -> INVESTIGATING -> HYPOTHESIS -> WAITING_APPROVAL -> EXECUTING -> RESOLVED；
+ * 任意阶段都可能转入 ESCALATED。
  *
- * <pre>
- * NEW -&gt; INVESTIGATING -&gt; HYPOTHESIS -&gt; WAITING_APPROVAL -&gt; EXECUTING -&gt; RESOLVED
- *                                  |                    |
- *                                  +------------------&gt; ESCALATED
- * </pre>
- *
- * <p>不是所有故障都会走到 {@code EXECUTING}：只读调查结束后，Agent 可能直接给出
+ * 不是所有故障都会走到 {@code EXECUTING}：只读调查结束后，Agent 可能直接给出
  * {@code RESOLVED} 建议，或因为风险/信息不足进入 {@code ESCALATED}。
  */
 public enum IncidentStatus {

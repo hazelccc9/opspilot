@@ -3,9 +3,9 @@ package com.opspilot.domain.model;
 import com.opspilot.domain.enums.RootCauseCategory;
 
 /**
- * 一条合成故障用例，是数据集和评测框架的工作单元。
+ * 合成故障用例，是数据集和评测框架的工作单元。
  *
- * <p>它把“Agent 能看到的输入”（{@code alert}、{@code signals}）和“只有评测能看到的
+ * 它把“Agent 能看到的输入”（{@code alert}、{@code signals}）和“只有评测能看到的
  * 标准答案”（{@code groundTruth}）放在一起，方便离线运行和逐条打分。
  * 运行时必须先把 {@code groundTruth} 剥离，再交给 Agent。
  */

@@ -1,9 +1,9 @@
 package com.opspilot.domain.enums;
 
 /**
- * Agent 可以建议的处置动作类型。
+ * Agent 可以建议的处置动作类型
  *
- * <p>除 {@link #ESCALATE} 和 {@link #NO_OP} 外，其余动作都会改变生产状态，属于写操作：
+ * 除 {@link #ESCALATE} 和 {@link #NO_OP} 外，其余动作都会改变生产状态，属于写操作：
  * 必须设置 {@code Action.requiresApproval = true}，并且默认只允许 dry-run。
  * 本项目不会连接真实生产环境执行这些动作。
  */

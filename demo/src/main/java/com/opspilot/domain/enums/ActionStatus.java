@@ -1,9 +1,9 @@
 package com.opspilot.domain.enums;
 
 /**
- * 处置动作的生命周期状态。
+ * 处置动作的生命周期状态
  *
- * <p>安全约束：动作必须先经过 {@code PROPOSED -> APPROVED}，才允许进入
+ * 安全约束：动作必须先经过 {@code PROPOSED -> APPROVED}，才允许进入
  * {@code EXECUTING}。任何写操作都不能从 {@code PROPOSED} 直接跳到 {@code EXECUTED}。
  */
 public enum ActionStatus {

@@ -8,12 +8,12 @@ import com.opspilot.domain.enums.RootCauseCategory;
 import java.util.List;
 
 /**
- * 一条合成故障用例的标准答案，仅用于评测。
+ * 合成故障用例的标准答案，仅用于评测。
  *
- * <p><b>安全边界：</b>{@code GroundTruth} 不能进入 Agent 的 Prompt、工具参数或上下文。
+ * 安全边界：{@code GroundTruth} 不能进入 Agent 的 Prompt、工具参数或上下文。
  * 它只允许被评测框架、数据集校验和人工分析读取；否则评测就是作弊。
  *
- * <p>这些标签描述的是“合理的最低标准”，不是唯一正确答案。例如某个故障可能既适合
+ * 这些标签描述的是“合理的最低标准”，不是唯一正确答案。例如某个故障可能既适合
  * 回滚也适合关闭功能开关，当前用 {@code expectedActionType} 做严格匹配，后续可以扩展为
  * 可接受动作集合。
  */

@@ -1,9 +1,9 @@
 package com.opspilot.domain.enums;
 
 /**
- * 工单状态。
+ * 工单状态
  *
- * <p>工单是故障处理的可审计载体：Agent 的结论、证据引用、建议动作和人工审批结果
+ * 工单是故障处理的可审计载体：Agent 的结论、证据引用、建议动作和人工审批结果
  * 最终都应能落到一张工单上，方便复盘和交接。
  */
 public enum TicketStatus {

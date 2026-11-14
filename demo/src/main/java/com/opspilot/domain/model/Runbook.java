@@ -4,9 +4,9 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * 运维手册（Runbook），也是 RAG 知识库的主要来源。
+ * 运维手册，也是 RAG 知识库的主要来源。
  *
- * <p>Runbook 应该描述“在什么症状下、按什么顺序、做哪些检查和处置”，
+ * Runbook 应该描述“在什么症状下、按什么顺序、做哪些检查和处置”，
  * 而不是只写一句“重启服务”。Agent 检索到片段后，必须通过 {@link Citation}
  * 标明文档 ID、版本和原文，避免把模型常识伪装成公司规范。
  */

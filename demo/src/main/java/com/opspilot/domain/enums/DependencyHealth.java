@@ -1,9 +1,9 @@
 package com.opspilot.domain.enums;
 
 /**
- * 下游依赖的健康状态。
+ * 下游依赖的健康状态
  *
- * <p>它描述的是“被依赖方”的状态，不是调用方自身的状态。例如
+ * 它描述的是“被依赖方”的状态，不是调用方自身的状态。例如
  * {@code order-service -> payment-service} 的记录中，{@code service} 是
  * {@code order-service}，{@code dependsOn} 是 {@code payment-service}，
  * 健康状态描述的是 {@code payment-service}。

@@ -7,16 +7,12 @@ import com.opspilot.domain.enums.ActionType;
 import java.time.Instant;
 
 /**
- * 一条处置动作建议，以及它的审批/执行状态。
+ * 处置动作建议，以及它的审批/执行状态。
  *
- * <p><b>安全边界：</b>除 {@link ActionType#ESCALATE} 和 {@link ActionType#NO_OP} 外，
- * 其他动作都属于写操作。写操作必须满足：
- *
- * <ul>
- *   <li>{@code requiresApproval = true}；</li>
- *   <li>状态不能从 {@code PROPOSED} 直接跳到 {@code EXECUTED}；</li>
- *   <li>本项目只允许 {@code dryRun = true} 或沙箱执行，不连接真实生产环境。</li>
- * </ul>
+ * 安全边界：除 {@link ActionType#ESCALATE} 和 {@link ActionType#NO_OP} 外，
+ * 其他动作都属于写操作。写操作必须满足：需要人工审批；状态不能从
+ * {@code PROPOSED} 直接跳到 {@code EXECUTED}；本项目只允许 {@code dryRun = true}
+ * 或沙箱执行，不连接真实生产环境。
  */
 public record Action(
         /* 动作唯一 ID */

@@ -6,9 +6,9 @@ import java.time.Instant;
 import java.util.Map;
 
 /**
- * 一条原始告警，是监控系统输出的不可变快照。
+ * 原始告警，是监控系统输出的不可变快照。
  *
- * <p>{@code Alert} 回答“监控看到了什么”，不包含 Agent 的调查结论。
+ * {@code Alert} 回答“监控看到了什么”，不包含 Agent 的调查结论。
  * 同一条告警可以触发一次 {@link Incident}；告警本身不承担状态流转。
  */
 public record Alert(

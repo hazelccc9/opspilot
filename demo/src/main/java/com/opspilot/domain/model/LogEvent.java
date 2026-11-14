@@ -6,9 +6,9 @@ import java.time.Instant;
 import java.util.Map;
 
 /**
- * 一条结构化日志事件。
+ * 结构化日志事件
  *
- * <p>{@code message} 是给人看的文本，{@code attributes} 是给程序过滤/聚合的结构化字段。
+ * {@code message} 是给人看的文本，{@code attributes} 是给程序过滤/聚合的结构化字段。
  * 生产环境中日志可能包含 PII，因此进入 Agent 上下文前必须先脱敏；本项目只使用合成数据。
  */
 public record LogEvent(
