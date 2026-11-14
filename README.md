@@ -2,7 +2,7 @@
 
 > 告警/工单处理 Agent：接入告警，调用日志、指标、发布记录、CMDB、Runbook 等工具，给出根因假设与处理建议；该转人工就转人工，全过程可审计、可评测、可回放。
 
-当前状态：**Day 2 / 35**。已完成项目骨架、领域模型、50 条合成故障集和评测指标初稿。
+当前状态：**Day 3 / 35**。已完成项目骨架、领域模型、50 条合成故障集、Mock 平台和告警接入/故障查询业务骨架。
 
 ## 这个项目要证明什么
 
@@ -50,6 +50,34 @@ cd demo
 curl http://localhost:8080/actuator/health
 ```
 
+Mock 平台启动时会加载 50 条合成故障，可以直接查询：
+
+```bash
+# 查看用例摘要（不包含 ground truth）
+curl http://localhost:8080/mock/cases
+
+# 注入 CASE-001 故障，返回它产生的告警
+curl -X POST http://localhost:8080/mock/faults/CASE-001/activate
+
+# 查询指标 / 日志 / 发布 / 依赖
+curl "http://localhost:8080/mock/metrics?service=order-service"
+curl "http://localhost:8080/mock/logs?service=order-service&level=ERROR"
+curl "http://localhost:8080/mock/deployments?service=order-service"
+curl "http://localhost:8080/mock/dependencies?service=order-service"
+```
+
+业务骨架：
+
+```bash
+# 告警接入，创建故障
+curl -X POST http://localhost:8080/api/alerts \
+  -H "Content-Type: application/json" \
+  -d '{"alertId":"ALERT-DEMO-1","service":"order-service","symptom":"5xx spike","severity":"P1","firedAt":"2026-11-10T08:00:00Z","source":"prometheus","description":"5xx rate 12%","labels":{"env":"prod"}}'
+
+# 查询故障
+curl http://localhost:8080/api/incidents/{incidentId}
+```
+
 真实模型通过 OpenAI 兼容接口接入，复制 `.env.example` 为 `.env` 并填写：
 
 ```bash
@@ -62,13 +90,16 @@ OPENAI_CHAT_MODEL=deepseek-chat
 
 - Day 1：Spring Boot 4.1 + Spring AI 2.0 骨架，dev/prod 双 profile，H2 可启动。
 - Day 2：`Alert / Incident / Evidence / Hypothesis / Action / Ticket` 等领域模型；5 类故障 × 10 条的合成数据集；JSON Schema 校验；评测指标初稿。
+- Day 3：Mock 平台（告警/指标/日志/发布/依赖/故障注入）；告警接入与故障查询；统一错误响应；MockMvc 集成测试。
 
 ```bash
 cd demo
 ./mvnw test
 ```
 
-测试会校验数据集数量、分类、ground truth 完整性和 schema；生成器见 `demo-data/README.md`。
+测试会校验数据集数量、分类、ground truth 完整性、schema、Mock 平台查询和业务 API；生成器见 `demo-data/README.md`。
+
+系统分析文档见 `docs/system-analysis.md`（当前由作者手动同步到语雀）。
 
 ## 每日计划
 

@@ -34,3 +34,8 @@ springdoc:
     enabled: true
   swagger-ui:
     enabled: true
+
+opspilot:
+  mock-platform:
+    # Relative paths are resolved from the working directory, then demo-data fallbacks.
+    dataset-path: ${OPSPILOT_DATASET_PATH:../demo-data/incidents.jsonl}
